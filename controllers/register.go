@@ -1,20 +1,25 @@
 package controllers
 
-import "github.com/astaxie/beego"
+import (
+	"Example/database"
+	"encoding/json"
 
-import "encoding/json"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
+)
 
 type RegisterController struct {
 	beego.Controller
 }
 
-type UserForm struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
-}
-
 func (this *RegisterController) Post() {
-	var req UserForm
+	var req database.UserForm
 	json.Unmarshal(this.Ctx.Input.RequestBody, &req)
 	println(req.Email)
+	println(req.Password)
+	o := orm.NewOrm()
+	o.Using("mydb")
+	if _, err := o.Insert(&req); err != nil {
+		beego.ErrorHandler("303", "Email already exists")
+	}
 }

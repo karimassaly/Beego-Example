@@ -1,0 +1,14 @@
+version: '3.1'
+volumes:
+        dbdata:
+services:
+  db:
+    image: postgres
+    environment:
+            - POSTGRES_USER=doimo
+            - POSTGRES_PASSWORD=2019doimo
+            - POSTGRES_DB=mydb
+    ports:
+    - "5432:5432"
+    volumes:
+            - dbdata:/var/lib/postgresql/data
