@@ -20,6 +20,13 @@ func (this *RegisterController) Post() {
 	o := orm.NewOrm()
 	o.Using("mydb")
 	if _, err := o.Insert(&req); err != nil {
-		beego.ErrorHandler("303", "Email already exists")
+		this.Ctx.Output.SetStatus(309)
+		this.Data["json"] = "Email already used"
+		this.ServeJSON()
+		return
 	}
+	this.Ctx.Output.SetStatus(200)
+	this.Data["json"] = "Registration Successful"
+	this.ServeJSON()
+	return
 }
