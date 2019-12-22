@@ -7,6 +7,7 @@ import (
 
 type UserForm struct {
 	Id       int    `orm:"auto";primary_key`
+	Name     string `json:"name" orm:"size(40)`
 	Email    string `json:"email" orm:"size(64);unique"`
 	Password string `json:"password"`
 }
