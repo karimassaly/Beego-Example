@@ -22,6 +22,7 @@ func (this *RegisterController) Post() {
 		this.Ctx.Output.SetStatus(309)
 		this.Data["json"] = "Email already used"
 		this.ServeJSON()
+		return
 	}
 	this.Ctx.Output.SetStatus(200)
 	this.Data["json"] = "Registration Successful"
