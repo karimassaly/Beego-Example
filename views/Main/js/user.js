@@ -19,11 +19,28 @@
       } // End if
     });
 
+
+function check_both_pass() {
+  re_pass = document.getElementById("re_pass").value
+  password = document.getElementById("pass").value;
+
+  console.log(re_pass, password)
+  if (password != re_pass) {
+    console.log("Im here now")
+    swal({title: "Failed", text: "Password doesn't match the repeat password", icon: 
+        "error"})
+    return 
+  } else {
+    push_connection_user()
+  }
+}
+
 function push_connection_user() {
       email = document.getElementById("email").value;
       password = document.getElementById("pass").value;
       name = document.getElementById("name").value;
-
+      re_pass = document.getElementById("re_pass").value
+      
       $.ajax({
           url: 'http://localhost:8080/register',
           type: 'POST',
