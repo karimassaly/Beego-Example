@@ -15,4 +15,4 @@ To compile:
 - bee run
 
 
-By the way for the registration i didn't not hash the passwords
+By the way for the registration i did not hash the passwords
